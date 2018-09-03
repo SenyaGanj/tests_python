@@ -30,7 +30,7 @@ def parsLog(log, event):
         return arResult
 
     except IOError:
-        return "An IOError has occurred!"
+        return False
 
 
 print(parsLog("/home/python_tests/log.txt", "Segmentation fault"))

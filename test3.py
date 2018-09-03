@@ -10,16 +10,16 @@ def GetScriptTag(url, pathName, lib):
         f = urllib.request.urlopen(url)
         text = f.read()
     except urllib.error.HTTPError:
-        return 'connect error'
+        return False
     except urllib.error.URLError:
-        return 'url error'
+        return False
     # записываем содержимое
     try:
         f = open(pathName, 'wb')
         f.write(text)
         f.close()
     except IOError:
-        return "An IOError has occurred!"
+        return False
 
     if lib:
         # обрабатываем данные страницы с библиотекой lxml

@@ -8,7 +8,7 @@ def priorityUrl(regulationsFile, structUrl):
         with open(regulationsFile, 'r') as f:
             regulations = json.loads(f.read())
     except IOError:
-        return "An IOError has occurred!"
+        return False
 
     # устанавливаем начальный приоритет
     priority = int(regulations["begin"])
