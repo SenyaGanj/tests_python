@@ -26,18 +26,23 @@ def priorityUrl(regulationsFile, structUrl):
     if endElem:
         endElem = regulations["url"]["end"][endElem] if endElem in regulations["url"]["end"].keys() else False
 
-    # обрабатываем параметры
+    # обрабатываем параметры, если они есть
     getElem = False
     if len(url) > 1:
+        # разделяем параметры
         url[1] = url[1].strip().split("&")
         for param in url[1]:
+            # разделяем на название параметра и на его значение разделителем "="
             param = param.split("=")
             if len(param) > 1:
+                # вытаскиваем окончание значения разделителем "."
                 param = param[-1].strip().split(".")
                 if len(param) > 1:
+                    # ищем окончание в правилах и присваиваем баллы
                     if "." + param[1].strip().lower() in regulations["url"]["get"].keys():
                         getElem = regulations["url"]["get"]["." + param[1].strip().lower()]
                         break
+    # вычисляем приоритет для параметра и для окончания ссылки
     priority += int(regulations["url"]["get_and_end"]) if endElem and getElem else \
         int(endElem) if endElem else int(getElem) if getElem else 0
 
@@ -46,6 +51,7 @@ def priorityUrl(regulationsFile, structUrl):
     domain = url[0][2]
     domain = domain.split(".")
 
+    # пробегаемся по домену и если такой уровень и такое значение есть в правилах, добавляем баллы
     for i in range(-1, -len(domain) - 1, -1):
         i_str = str(abs(i))
         if i_str in regulations["url"]["domain"].keys():
@@ -85,7 +91,7 @@ input2 = {
         "isp": "HLL LLC",
         "org": "HLL LLC"
     },
-    "url": "https://download.geo.drweb.com/pub/drweb/windows/katana/1.0/drweb-1.0-katana.exe?download=MSXML3.DLL",
+    "url": "https://download.geo.drweb.com/pub/drweb/windows/katana/1.0/drweb-1.0-katana.exe?download2=MSXML3&download=MSXML3.DLL",
 }
 
 print(priorityUrl("/home/python_tests/regulations.json", input2))
