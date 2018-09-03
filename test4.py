@@ -21,7 +21,7 @@ def parsLog(log, event):
                 else:
                     if row.find("F-" + objStruct["PID"]) != -1:
                         # с помощью PID собираем поле SF_TEXT из каждой строки массива
-                        objStruct["SF_TEXT"] += re.findall(r'Dump: (.+)', str(row))[0] + " \n "
+                        objStruct["SF_TEXT"] += re.findall(r'Dump: (.+)', str(row))[0] + " \n"
                     else:
                         # если PID не найден => событие закончилось, добавляем словарь в массив
                         arResult.append(objStruct)

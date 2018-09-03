@@ -91,7 +91,8 @@ input2 = {
         "isp": "HLL LLC",
         "org": "HLL LLC"
     },
-    "url": "https://download.geo.drweb.com/pub/drweb/windows/katana/1.0/drweb-1.0-katana.exe?download2=MSXML3&download=MSXML3.DLL",
+    "url": "https://download.geo.drweb.com/pub/drweb/windows/katana/1.0/drweb-1.0-katana.exe?download=MSXML3.DLL",
 }
 
+print(priorityUrl("/home/python_tests/regulations.json", input1))
 print(priorityUrl("/home/python_tests/regulations.json", input2))
